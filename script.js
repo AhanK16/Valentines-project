@@ -30,7 +30,15 @@ noBtn.addEventListener('click', () => {
         questionText.innerText = "Okay, you have no choice now! 😂";
     }
 
-    // 3. Maximum size cap: If the Yes button gets massive, hide the No button
+    // 3. Move the No button to a random position
+    // Calculate available width and height (subtracting button size so it stays on screen)
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+    
+    // 4. Maximum size cap: If the Yes button gets massive, hide the No button
     if (fontSize > 15) {
         noBtn.style.display = 'none';
     }
