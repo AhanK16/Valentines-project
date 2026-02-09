@@ -7,7 +7,8 @@ let fontSize = 1.5; // Initial size in rem
 
 // Array of messages to show as she clicks "No"
 const messages = [
-    "Are you sure? 🤨",
+   // "Are you sure? 🤨",
+    "Catch me if you can!!",
     "Really sure?? 🥺",
     "Think about it again!",
     "I'll be very sad...",
