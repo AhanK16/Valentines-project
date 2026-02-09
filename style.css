@@ -24,3 +24,19 @@ button {
 
 #yesBtn { background-color: #ff4d6d; color: white; }
 #noBtn { background-color: #adb5bd; color: white; }
+
+#noBtn {
+    position: absolute; /* Allows the button to move based on coordinates */
+    transition: 0.2s ease; /* Makes the jump look a bit smoother */
+    z-index: 999; /* Keeps it above other elements */
+}
+
+/* Ensure the container doesn't restrict the button's movement */
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
