@@ -9,5 +9,15 @@
         <img src="us.jpg" alt="Us" style="max-width: 400px; border-radius: 20px;">
         <p>Put your heartfelt message here. You're the best thing that ever happened to me...</p>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  // This triggers a confetti burst immediately when she lands on the page
+  confetti({
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.6 },
+    colors: ['#ff4d6d', '#ffafcc', '#ffc2d1'] // Pink and Red hearts colors
+  });
+</script>
 </body>
 </html>
