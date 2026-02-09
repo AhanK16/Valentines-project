@@ -40,3 +40,26 @@ button {
     justify-content: center;
     align-items: center;
 }
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.quiz-btn {
+    background-color: #ffafcc;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.quiz-btn:hover {
+    transform: scale(1.05);
+    background-color: #ff4d6d;
+}
