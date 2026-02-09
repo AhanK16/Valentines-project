@@ -3,11 +3,9 @@ const yesBtn = document.getElementById('yesBtn');
 const questionText = document.getElementById('question');
 
 let clickCount = 0;
-let fontSize = 1.5; // Initial size in rem
+let fontSize = 1.5; 
 
-// Array of messages to show as she clicks "No"
 const messages = [
-   // "Are you sure? 🤨",
     "Catch me if you can!!",
     "Really sure?? 🥺",
     "Think about it again!",
@@ -17,29 +15,35 @@ const messages = [
 ];
 
 noBtn.addEventListener('click', () => {
+    // IMPORTANT: The button must be absolute to move!
+    noBtn.style.position = 'absolute'; 
+
     clickCount++;
 
     // 1. Increase the size of the Yes button
-    fontSize += 2.5; // Adjust this number to make it grow faster or slower
+    fontSize += 2.5; 
     yesBtn.style.fontSize = `${fontSize}rem`;
     yesBtn.style.padding = `${fontSize / 1.5}rem ${fontSize}rem`;
 
-    // 2. Change the question text based on the click count
-    if (clickCount < messages.length) {
+    // 2. Update text logic (using modulo % ensures it loops if she clicks 100 times)
+    if (clickCount <= messages.length) {
         questionText.innerText = messages[clickCount - 1];
     } else {
         questionText.innerText = "Okay, you have no choice now! 😂";
     }
 
-    // 3. Move the No button to a random position
-    // Calculate available width and height (subtracting button size so it stays on screen)
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    // 3. Move the No button
+    // We use Math.max to ensure the coordinates aren't negative
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
     
-    // 4. Maximum size cap: If the Yes button gets massive, hide the No button
+    // 4. Maximum size cap
     if (fontSize > 15) {
         noBtn.style.display = 'none';
     }
