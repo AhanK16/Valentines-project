@@ -1,15 +1,27 @@
 const questions = [
     {
-        q: "What is my favorite thing about you?",
-        options: ["Your smile", "Your kindness", "Your laugh", "All of the above!"],
-        correct: 3 // Index of the correct answer
+        q: "1- What was the first thing I bought for you?",
+        options: ["Flowers", "A Drink", "A Brownie", "All of the above!"],
+        correct: 1 // Index of the correct answer
     },
     {
-        q: "Where was our first date?",
-        options: ["The Park", "The Movies", "That cute Cafe", "The Beach"],
-        correct: 2
+        q: "2- What is the story we tell our kids on how we got together?",
+        options: ["We got freaky in da clurb", "Bollywood love at first sight", "My attractive dance moves", "ArE yOU mUsLIm?"],
+        correct: 0
     },
-    // ... Add 3 more questions here following the same format
+    {
+        q: "3- 
+    },
+     {
+        q: "4- ",
+        options: ["Flowers", "A Drink", "A Brownie", "All of the above!"],
+        correct: 1 
+    },
+     {
+        q: "5- Who is the best boyfriend ever?",
+        options: ["Biggie", "Pedro Pascal🤢", "your ex😒", "AHAN"],
+        correct: 3 
+    },
 ];
 
 let currentQuestion = 0;
