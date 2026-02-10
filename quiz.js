@@ -2,7 +2,7 @@ const questions = [
     {
         q: "1- What was the first thing I bought for you?",
         options: ["Flowers", "A Drink", "A Brownie", "All of the above!"],
-        correct: 1 // Index of the correct answer
+        correct: 1 
     },
     {
         q: "2- What is the story we tell our kids on how we got together?",
@@ -12,17 +12,18 @@ const questions = [
     {
         q: "3- What is our best inside joke?",
         options: ["aChALa", "Shishir & Sanya", "OH OH OH + impersonations", "Abusive GF"],
+        correct: 2 // ADDED THIS
     },
-     {
-        q: "4- What is MY favourite day with you?".
+    {
+        q: "4- What is MY favourite day with you?", // FIXED THE PERIOD HERE
         options: ["THAT rainy day chat", "First Bollynights", "JB Show Day", "Everyday!!!"],
         correct: 3
     },
-     {
+    {
         q: "5- Who is the best boyfriend ever?",
         options: ["Biggie", "Pedro Pascal🤢", "your ex😒", "AHAN"],
         correct: 3 
-    },
+    }
 ];
 
 let currentQuestion = 0;
@@ -34,7 +35,7 @@ const optionsEl = document.getElementById("options-container");
 function loadQuestion() {
     const data = questions[currentQuestion];
     questionEl.innerText = data.q;
-    optionsEl.innerHTML = ""; // Clear old buttons
+    optionsEl.innerHTML = ""; 
 
     data.options.forEach((opt, index) => {
         const btn = document.createElement("button");
@@ -61,8 +62,8 @@ function handleAnswer(index) {
 
 function showResults() {
     questionEl.innerText = `You scored ${score} out of ${questions.length}!`;
-    optionsEl.innerHTML = `<button onclick="location.href='success.html'">See your surprise ❤️</button>`;
+    // Added 'quiz-btn' class here so it matches your styling
+    optionsEl.innerHTML = `<button class="quiz-btn" onclick="location.href='success.html'">See your surprise ❤️</button>`;
 }
 
-// Start the quiz
 loadQuestion();
