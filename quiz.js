@@ -10,12 +10,13 @@ const questions = [
         correct: 0
     },
     {
-        q: "3- 
+        q: "3- What is our best inside joke?",
+        options: ["aChALa", "Shishir & Sanya", "OH OH OH + impersonations", "Abusive GF"],
     },
      {
-        q: "4- ",
-        options: ["Flowers", "A Drink", "A Brownie", "All of the above!"],
-        correct: 1 
+        q: "4- What is MY favourite day with you?".
+        options: ["THAT rainy day chat", "First Bollynights", "JB Show Day", "Everyday!!!"],
+        correct: 3
     },
      {
         q: "5- Who is the best boyfriend ever?",
