@@ -12,7 +12,7 @@ const questions = [
     {
         q: "3- What is our best inside joke?",
         options: ["doi doi", "Shishir & Sanya", "OH OH OH + impersonations", "Abusive GF"],
-        correct: 2 
+        correct: 0 
     },
     {
         q: "4- What is MY favourite day with you?",
