@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yay! ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Yay! I knew you'd say yes! 🥰</h1>
-        <img src="Chibi_Ihab_and_Ahan-removebg-preview.png" alt="Us" style="max-width: 400px; border-radius: 20px;">
-        <p>Put your heartfelt message here. You're the best thing that ever happened to me...</p>
+        <h1>I knew you could do it!</h1>
+        
+        <img src="us.png" alt="Us" id="success-image" style="max-width: 300px; border-radius: 20px;">
+
+        <h2>You're stuck with me now! 😉</h2>
+
+        <button class="quiz-btn" onclick="location.href='letter.html'">
+            Read My Letter ❤️
+        </button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script>
-  // This triggers a confetti burst immediately when she lands on the page
-  confetti({
-    particleCount: 150,
-    spread: 70,
-    origin: { y: 0.6 },
-    colors: ['#ff4d6d', '#ffafcc', '#ffc2d1'] // Pink and Red hearts colors
-  });
-</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        confetti(); // Blast immediately when page opens
+    </script>
 </body>
 </html>
