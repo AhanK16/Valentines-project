@@ -11,11 +11,11 @@ const questions = [
     },
     {
         q: "3- What is our best inside joke?",
-        options: ["aChALa", "Shishir & Sanya", "OH OH OH + impersonations", "Abusive GF"],
-        correct: 2 // ADDED THIS
+        options: ["doi doi", "Shishir & Sanya", "OH OH OH + impersonations", "Abusive GF"],
+        correct: 2 
     },
     {
-        q: "4- What is MY favourite day with you?", // FIXED THE PERIOD HERE
+        q: "4- What is MY favourite day with you?",
         options: ["THAT rainy day chat", "First Bollynights", "JB Show Day", "Everyday!!!"],
         correct: 3
     },
@@ -29,10 +29,12 @@ const questions = [
 let currentQuestion = 0;
 let score = 0;
 
-const questionEl = document.getElementById("question-text");
-const optionsEl = document.getElementById("options-container");
-
 function loadQuestion() {
+    const questionEl = document.getElementById("question-text");
+    const optionsEl = document.getElementById("options-container");
+
+    if (!questionEl || !optionsEl) return;
+
     const data = questions[currentQuestion];
     questionEl.innerText = data.q;
     optionsEl.innerHTML = ""; 
@@ -61,9 +63,18 @@ function handleAnswer(index) {
 }
 
 function showResults() {
+    const questionEl = document.getElementById("question-text");
+    const optionsEl = document.getElementById("options-container");
+    
     questionEl.innerText = `You scored ${score} out of ${questions.length}!`;
-    // Added 'quiz-btn' class here so it matches your styling
-    optionsEl.innerHTML = `<button class="quiz-btn" onclick="location.href='puzzle.html'">Well done! Next test here...</button>`;
+    
+    // REDIRECT UPDATE: Now points to the Puzzle stage
+    optionsEl.innerHTML = `
+        <button class="quiz-btn" onclick="location.href='puzzle.html'">
+            Final Challenge: The Memory Puzzle 🧩
+        </button>
+    `;
 }
 
+// Start the quiz
 loadQuestion();
