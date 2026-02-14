@@ -63,3 +63,27 @@ button {
     transform: scale(1.05);
     background-color: #ff4d6d;
 }
+
+/* 1. The Style for your Span */
+.emphasis {
+    font-weight: 800;                /* Makes it extra bold */
+    color: #ff4d6d;                  /* A vibrant pinkish-red */
+    display: inline-block;           /* Essential for the pulse/scale to work */
+    animation: pulse 1.5s infinite;  /* Links to the heartbeat below */
+}
+
+/* 2. The Heartbeat Animation Logic */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        color: #ff4d6d;
+    }
+    50% {
+        transform: scale(1.15);      /* Grows by 15% */
+        color: #ff0055;              /* Deepens the color at the peak */
+    }
+    100% {
+        transform: scale(1);         /* Shrinks back to normal */
+        color: #ff4d6d;
+    }
+}
