@@ -85,3 +85,26 @@ button {
     gap: 15px;
     margin-top: 20px;
 }
+
+#puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 2px;
+    border: 5px solid #ff4d6d;
+    margin: 20px auto;
+    width: 306px; /* 300px + gaps */
+    background-color: #ddd;
+}
+
+.tile {
+    width: 100px;
+    height: 100px;
+    background-size: 300px 300px; /* Must match board size */
+    cursor: grab;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.tile:active {
+    cursor: grabbing;
+}
