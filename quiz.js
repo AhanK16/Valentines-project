@@ -63,7 +63,7 @@ function handleAnswer(index) {
 function showResults() {
     questionEl.innerText = `You scored ${score} out of ${questions.length}!`;
     // Added 'quiz-btn' class here so it matches your styling
-    optionsEl.innerHTML = `<button class="quiz-btn" onclick="location.href='success.html'">See your surprise ❤️</button>`;
+    optionsEl.innerHTML = `<button class="quiz-btn" onclick="location.href='puzzle.html'">Well done! Next test here...</button>`;
 }
 
 loadQuestion();
