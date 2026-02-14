@@ -16,11 +16,11 @@ function createPuzzle() {
         tile.draggable = true;
         tile.dataset.index = i;
         
-        // Calculate background position for each slice of 'us.png'
+        // Calculate background position for each slice of 'us.jpg'
         // Assumes a 300x300 image (100px per tile)
         const x = (i % size) * 100;
         const y = Math.floor(i / size) * 100;
-        tile.style.backgroundImage = "url('us.png')"; 
+        tile.style.backgroundImage = "url('us.jpg')"; 
         tile.style.backgroundPosition = `-${x}px -${y}px`;
         
         tiles.push(tile);
