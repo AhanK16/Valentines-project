@@ -1,13 +1,14 @@
+/* --- GLOBAL STYLES --- */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #ffe4e1; /* Pastel Pink */
     font-family: 'Arial', sans-serif;
     text-align: center;
     margin: 0;
-    overflow: hidden; /* Prevents scrollbars during the pulse */
+    overflow-x: hidden;
 }
 
 .container {
@@ -16,12 +17,11 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    width: 100%;
+    max-width: 600px;
 }
 
-.buttons {
-    margin-top: 20px;
-}
-
+/* --- BUTTON STYLES --- */
 button {
     padding: 10px 20px;
     margin: 10px;
@@ -32,11 +32,17 @@ button {
     transition: 0.3s;
 }
 
-/* Specific button styles */
+/* Landing Page Buttons */
 #yesBtn { background-color: #ff4d6d; color: white; }
-#noBtn { background-color: #adb5bd; color: white; position: absolute; transition: 0.2s ease; z-index: 999; }
+#noBtn { 
+    background-color: #adb5bd; 
+    color: white; 
+    position: absolute; 
+    transition: 0.2s ease; 
+    z-index: 999; 
+}
 
-/* Quiz and Challenge button style */
+/* Quiz & Global Action Buttons */
 .quiz-btn {
     background-color: #ffafcc;
     color: white;
@@ -45,80 +51,100 @@ button {
     font-size: 1.2rem;
     cursor: pointer;
     border: none;
-    transition: transform 0.2s, background-color 0.2s;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.2);
 }
 
 .quiz-btn:hover {
     transform: scale(1.05);
     background-color: #ff4d6d;
+    box-shadow: 0 6px 20px rgba(255, 77, 109, 0.4);
 }
 
-/* The Pulsing Text Style */
-.emphasis {
-    font-weight: 800;
-    color: #ff4d6d;
-    display: inline-block; /* Required for the scale animation */
-    animation: pulse 1.5s infinite;
-    font-size: 1.3rem; /* Making it slightly larger by default */
-}
-
-/* The Heartbeat Animation Logic */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        color: #ff4d6d;
-    }
-    50% {
-        transform: scale(1.15);
-        color: #ff0055;
-    }
-    100% {
-        transform: scale(1);
-        color: #ff4d6d;
-    }
-}
-
-/* Grid for the Quiz Page */
+/* --- QUIZ SPECIFIC --- */
 .options-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
     margin-top: 20px;
+    width: 100%;
 }
 
+/* --- CHALLENGE PAGE SPECIFIC --- */
+.emphasis {
+    font-weight: 800;
+    color: #ff4d6d;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+    font-size: 1.4rem;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); color: #ff4d6d; }
+    50% { transform: scale(1.15); color: #ff0055; }
+    100% { transform: scale(1); color: #ff4d6d; }
+}
+
+/* --- PUZZLE SPECIFIC --- */
 #puzzle-board {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    gap: 2px;
-    border: 5px solid #ff4d6d;
+    grid-template-columns: repeat(3, 150px); /* 3 columns of 150px */
+    grid-template-rows: repeat(3, 100px);    /* 3 rows of 100px */
+    width: 450px;
+    height: 300px;
+    border: 3px dashed #ff4d6d; 
+    background-color: rgba(255, 255, 255, 0.6);
     margin: 20px auto;
-    width: 306px; /* 300px + gaps */
-    background-color: #ddd;
+}
+
+#pieces-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    min-height: 120px;
+    padding: 20px;
+    border: 2px solid #ffafcc;
+    border-radius: 15px;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.slot {
+    width: 150px;
+    height: 100px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-sizing: border-box;
 }
 
 .tile {
-    width: 100px;
+    width: 150px;
     height: 100px;
-    background-size: 300px 300px; /* Must match board size */
+    background-size: 450px 300px; /* Forces the us.jpg to fit the 450x300 board */
     cursor: grab;
-    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    border: 1px solid rgba(255,255,255,0.4);
 }
 
-.tile:active {
-    cursor: grabbing;
+/* --- LETTER SPECIFIC --- */
+.letter-box {
+    background: #fff9f0;
+    padding: 40px;
+    max-width: 90%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    font-family: 'Dancing Script', cursive; /* Make sure to link this font in letter.html */
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: left;
+    margin-bottom: 20px;
 }
 
-.quiz-btn {
-    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
-    transition: all 0.3s ease;
-}
-
-.quiz-btn:hover {
-    box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
-    transform: translateY(-3px); /* Lifts the button slightly when hovered */
-}
-
+/* Fade in effect for the final button */
 #finish-puzzle {
     margin-top: 20px;
     animation: fadeIn 1s ease-in;
