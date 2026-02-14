@@ -118,3 +118,13 @@ button {
     box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
     transform: translateY(-3px); /* Lifts the button slightly when hovered */
 }
+
+#finish-puzzle {
+    margin-top: 20px;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
