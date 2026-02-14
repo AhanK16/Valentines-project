@@ -95,17 +95,19 @@ button {
     border: 3px dashed #ff4d6d; 
     background-color: rgba(255, 255, 255, 0.6);
     margin: 20px auto;
-    box-sizing: content-box; /* Ensures the border doesn't shrink the board */
+    /* This ensures the board doesn't grow if you add a border */
+    box-sizing: content-box; 
 }
 
 #pieces-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
     width: 100%;
-    max-width: 500px;
-    min-height: 120px;
+    max-width: 520px;
+    min-height: 150px;
     padding: 20px;
     border: 2px solid #ffafcc;
     border-radius: 15px;
@@ -116,19 +118,21 @@ button {
 .slot {
     width: 150px;
     height: 100px;
-    outline: 1px solid rgba(0,0,0,0.05); /* Outline instead of border to prevent overlap */
+    /* Using outline instead of border so it doesn't add to the width/height */
+    outline: 1px solid rgba(0,0,0,0.05);
     box-sizing: border-box;
 }
 
 .tile {
     width: 150px;
     height: 100px;
-    background-size: 450px 300px; 
+    background-size: 450px 300px; /* Exact dimensions of the board */
     cursor: grab;
-    border-radius: 0; /* Square edges make the image look seamless */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: none; /* Removed borders to stop overlapping */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     box-sizing: border-box;
-    display: block;
+    /* Prevents ghosting during drag */
+    touch-action: none;
 }
 
 /* --- LETTER SPECIFIC --- */
