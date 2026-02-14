@@ -1,95 +1,89 @@
 const board = document.getElementById('puzzle-board');
+const piecesContainer = document.getElementById('pieces-container');
 const finishBtn = document.getElementById('finish-puzzle');
 const message = document.getElementById('puzzle-message');
-const size = 3; // 3x3 grid
+
+const rows = 3;
+const cols = 3;
 let tiles = [];
-const correctOrder = [];
 
-// Create the puzzle pieces
 function createPuzzle() {
-    board.innerHTML = ""; // Clear board before starting
-    tiles = [];
+    board.innerHTML = "";
+    piecesContainer.innerHTML = "";
 
-    for (let i = 0; i < size * size; i++) {
+    // 1. Create the Slots
+    for (let i = 0; i < rows * cols; i++) {
+        const slot = document.createElement('div');
+        slot.classList.add('slot');
+        slot.dataset.index = i;
+        slot.addEventListener('dragover', e => e.preventDefault());
+        slot.addEventListener('drop', handleDrop);
+        board.appendChild(slot);
+    }
+
+    // 2. Create the Tiles
+    for (let i = 0; i < rows * cols; i++) {
         const tile = document.createElement('div');
         tile.classList.add('tile');
         tile.draggable = true;
         tile.dataset.index = i;
+
+        const x = (i % cols) * 150;
+        const y = Math.floor(i / cols) * 100;
         
-        // Calculate background position for each slice of 'us.jpg'
-        // Assumes a 300x300 image (100px per tile)
-        const x = (i % size) * 100;
-        const y = Math.floor(i / size) * 100;
-        tile.style.backgroundImage = "url('us.jpg')"; 
+        tile.style.backgroundImage = "url('us.jpg')";
         tile.style.backgroundPosition = `-${x}px -${y}px`;
-        
+
+        tile.addEventListener('dragstart', e => {
+            e.dataTransfer.setData('text/plain', i);
+        });
+
         tiles.push(tile);
-        correctOrder.push(i);
     }
 
-    // Shuffle tiles using a reliable shuffle algorithm
-    const shuffledTiles = [...tiles].sort(() => Math.random() - 0.5);
-    shuffledTiles.forEach(tile => board.appendChild(tile));
+    // 3. Shuffle and put in TRAY
+    tiles.sort(() => Math.random() - 0.5);
+    tiles.forEach(tile => piecesContainer.appendChild(tile));
 }
 
-// Drag and Drop Logic
-let draggedTile = null;
-
-board.addEventListener('dragstart', (e) => {
-    draggedTile = e.target;
-    e.dataTransfer.setData('text/plain', ''); // Required for Firefox
-});
-
-board.addEventListener('dragover', (e) => {
-    e.preventDefault(); // Necessary to allow a drop
-});
-
-board.addEventListener('drop', (e) => {
+function handleDrop(e) {
     e.preventDefault();
-    const droppedTile = e.target.closest('.tile');
-    
-    if (droppedTile && droppedTile !== draggedTile) {
-        const allTiles = [...board.children];
-        const draggedIndex = allTiles.indexOf(draggedTile);
-        const droppedIndex = allTiles.indexOf(droppedTile);
+    const slot = e.target.closest('.slot');
+    const tileIndex = e.dataTransfer.getData('text/plain');
+    const draggingTile = document.querySelector(`.tile[data-index="${tileIndex}"]`);
 
-        // Visual Swap Logic
-        if (draggedIndex < droppedIndex) {
-            droppedTile.after(draggedTile);
-            board.insertBefore(droppedTile, allTiles[draggedIndex]);
+    if (slot && slot.children.length === 0) {
+        // SNAP-BACK LOGIC: Check if it's the right slot
+        if (tileIndex === slot.dataset.index) {
+            slot.appendChild(draggingTile);
+            draggingTile.draggable = false; // Lock it in
+            draggingTile.style.cursor = "default";
         } else {
-            droppedTile.before(draggedTile);
-            board.insertBefore(draggedTile, allTiles[droppedIndex]);
+            // Wrong slot? Back to the tray!
+            piecesContainer.appendChild(draggingTile);
+            // Flash a quick message or effect here if you want
         }
-        
         checkWin();
     }
-});
+}
 
 function checkWin() {
-    const currentOrder = [...board.children].map(t => parseInt(t.dataset.index));
-    
-    // Check if current order matches the original 0-8 sequence
-    if (currentOrder.every((val, index) => val === index)) {
-        message.innerHTML = "Perfect! Just like us. ❤️";
-        
-        // Trigger Confetti (Ensure the library script is in your HTML)
-        if (typeof confetti === 'function') {
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        }
+    const slots = document.querySelectorAll('.slot');
+    let filledCorrectly = 0;
 
-        // Show the button to go to success.html
+    slots.forEach(slot => {
+        if (slot.children.length > 0) {
+            if (slot.children[0].dataset.index === slot.dataset.index) {
+                filledCorrectly++;
+            }
+        }
+    });
+
+    if (filledCorrectly === rows * cols) {
+        message.innerText = "Perfect! Every piece fits. ❤️";
+        confetti();
         finishBtn.style.display = "block";
-        
-        // Disable dragging once won
-        const allTiles = document.querySelectorAll('.tile');
-        allTiles.forEach(t => t.draggable = false);
     }
 }
 
-// Start the game
 createPuzzle();
